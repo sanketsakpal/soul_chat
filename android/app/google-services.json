@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "647010686442",
+    "project_id": "soul-chat-backend",
+    "storage_bucket": "soul-chat-backend.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:647010686442:android:f2c9b6d7502c55d2c3ce93",
+        "android_client_info": {
+          "package_name": "com.example.soul_chat"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNzJPw8cLCVPBcUq1ZGEQnOESC9wKbaEI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
