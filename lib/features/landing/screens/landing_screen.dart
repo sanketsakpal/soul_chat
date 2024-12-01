@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:soul_chat/colors.dart';
 import 'package:soul_chat/common/widgets/custom_button.dart';
+import 'package:soul_chat/routes/route_name.dart';
 
 class LandingScreen extends StatelessWidget {
   const LandingScreen({super.key});
@@ -42,7 +44,7 @@ class LandingScreen extends StatelessWidget {
             width: size.width * 0.75,
             child: CustomButton(
               text: 'AGREE AND CONTINUE',
-              onPressed: () {},
+              onPressed: () => context.pushNamed(RouteName.login),
             ),
           )
         ],
