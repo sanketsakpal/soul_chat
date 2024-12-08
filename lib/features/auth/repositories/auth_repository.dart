@@ -2,9 +2,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:soul_chat/common/utils/utils.dart';
 import 'package:soul_chat/routes/route_name.dart';
+
+// its immutable
+final authRepositoryProvider = Provider(
+  (ref) => AuthRepository(
+      firebaseAuth: FirebaseAuth.instance,
+      firebaseFirestore: FirebaseFirestore.instance),
+);
 
 class AuthRepository {
   final FirebaseAuth firebaseAuth;
@@ -26,7 +34,9 @@ class AuthRepository {
           throw Exception(error.message);
         },
         codeSent: (verificationId, forceResendingToken) async {
-          context.pushNamed(RouteName.otp);
+          context.pushNamed(RouteName.otp, pathParameters: {
+            'otp': verificationId,
+          });
         },
         codeAutoRetrievalTimeout: (verificationId) {},
       );

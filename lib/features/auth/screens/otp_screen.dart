@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:soul_chat/colors.dart';
 
 class OtpScreen extends StatefulWidget {
-  const OtpScreen({super.key});
+  final String? otp;
+  const OtpScreen({super.key, required this.otp});
 
   @override
   State<OtpScreen> createState() => _OtpScreenState();

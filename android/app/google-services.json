@@ -12,7 +12,20 @@
           "package_name": "com.example.soul_chat"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "647010686442-n9i168q8bschvj9sfgirmvs1lqfjdolu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.soul_chat",
+            "certificate_hash": "b806da3c4874ff6ae61ecb0d438a46fb02888dd8"
+          }
+        },
+        {
+          "client_id": "647010686442-g8cvtidmgmn22g3tp22ifmgpms5p7s7d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDNzJPw8cLCVPBcUq1ZGEQnOESC9wKbaEI"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "647010686442-g8cvtidmgmn22g3tp22ifmgpms5p7s7d.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "647010686442-3msnjh8lo5kgcvrgsdsardtgmvc6c0pm.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.soulChat"
+              }
+            }
+          ]
         }
       }
     }

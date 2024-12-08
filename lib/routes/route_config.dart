@@ -20,7 +20,12 @@ GoRouter router = GoRouter(
     GoRoute(
       name: '/otp',
       path: RouteName.otp,
-      builder: (context, state) => const OtpScreen(),
+      builder: (context, state) {
+        final otp = state.pathParameters['otp'];
+        return OtpScreen(
+          otp: otp,
+        );
+      },
     )
   ],
 );

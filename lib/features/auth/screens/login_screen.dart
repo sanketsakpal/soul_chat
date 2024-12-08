@@ -1,15 +1,20 @@
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:soul_chat/common/utils/utils.dart';
 import 'package:soul_chat/common/widgets/custom_button.dart';
+import 'package:soul_chat/features/controller/auth_controller.dart';
+import 'package:soul_chat/routes/route_name.dart';
 
-class LoginScreen extends StatefulWidget {
+class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  ConsumerState<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _LoginScreenState extends ConsumerState<LoginScreen> {
   final phoneController = TextEditingController();
   Country? country;
 
@@ -29,16 +34,18 @@ class _LoginScreenState extends State<LoginScreen> {
         });
   }
 
-  // void sendPhoneNumber() {
-  //   String phoneNumber = phoneController.text.trim();
-  //   if (country != null && phoneNumber.isNotEmpty) {
-  //     ref
-  //         .read(authControllerProvider)
-  //         .signInWithPhone(context, '+${country!.phoneCode}$phoneNumber');
-  //   } else {
-  //     showSnackBar(context: context, content: 'Fill out all the fields');
-  //   }
-  // }
+  void sendPhoneNumber() {
+    String phoneNumber = phoneController.text.trim();
+    if (country != null && phoneNumber.isNotEmpty) {
+      // provider ref use =>  interact provider with provider
+      // widget ref use => makes widget interact with provider
+      ref
+          .read(authControllerProvider)
+          .singInWithPhone(context, '+${country!.phoneCode}$phoneNumber');
+    } else {
+      showSnackBar(context: context, content: 'Fill out all the fields');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +86,12 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(
                 width: 90,
                 child: CustomButton(
-                  onPressed: () {}, //sendPhoneNumber,
+                  onPressed: () {
+                    context.goNamed(RouteName.otp, pathParameters: {
+                      'otp': '90',
+                    });
+                  },
+                  // sendPhoneNumber,
                   text: 'NEXT',
                 ),
               ),
