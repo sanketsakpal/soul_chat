@@ -8,18 +8,18 @@ GoRouter router = GoRouter(
   initialLocation: '/landing',
   routes: <RouteBase>[
     GoRoute(
-      name: '/landing',
-      path: RouteName.landing,
+      name: RouteName.landing,
+      path: '/landing',
       builder: (context, state) => const LandingScreen(),
     ),
     GoRoute(
-      name: '/login',
-      path: RouteName.login,
+      name: RouteName.login,
+      path: '/login',
       builder: (context, state) => const LoginScreen(),
     ),
     GoRoute(
-      name: '/otp',
-      path: RouteName.otp,
+      name: RouteName.otp,
+      path: '/otp/:otp',
       builder: (context, state) {
         final otp = state.pathParameters['otp'];
         return OtpScreen(
