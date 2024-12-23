@@ -1,4 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -56,13 +58,25 @@ class AuthRepository {
         smsCode: userOTP,
       );
       await firebaseAuth.signInWithCredential(credential);
-      // Navigator.pushNamedAndRemoveUntil(
-      //   context,
-      // UserInformationScreen.routeName,
-      //   (route) => false,
-      // );
+      context.goNamed(RouteName.userInformation);
     } on FirebaseAuthException catch (e) {
       showSnackBar(context: context, content: e.message!);
+    }
+  }
+
+  void saveUserDataToFirebase(
+      {required String name,
+      required File? profilePic,
+      required Ref ref,
+      required BuildContext context}) {
+    try {
+      String uid = firebaseAuth.currentUser!.uid;
+      String photoUrl =
+          'https://png.pngitem.com/pimgs/s/649-6490124_katie-notopoulos-katienotopoulos-i-write-about-tech-round.png';
+
+      if (profilePic != null) {}
+    } catch (e) {
+      showSnackBar(context: context, content: e.toString());
     }
   }
 }

@@ -1,6 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:soul_chat/features/auth/screens/login_screen.dart';
 import 'package:soul_chat/features/auth/screens/otp_screen.dart';
+import 'package:soul_chat/features/auth/screens/user_information_screen.dart';
 import 'package:soul_chat/features/landing/screens/landing_screen.dart';
 import 'package:soul_chat/routes/route_name.dart';
 
@@ -25,6 +26,13 @@ GoRouter router = GoRouter(
         return OtpScreen(
           otp: otp,
         );
+      },
+    ),
+    GoRoute(
+      name: RouteName.userInformation,
+      path: '/userInformation',
+      builder: (context, state) {
+        return const UserInformationScreen();
       },
     )
   ],

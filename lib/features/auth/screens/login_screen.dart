@@ -86,12 +86,14 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               SizedBox(
                 width: 90,
                 child: CustomButton(
-                  onPressed: () {
-                    context.goNamed(RouteName.otp, pathParameters: {
-                      'otp': '90',
-                    });
-                  },
-                  // sendPhoneNumber,
+                  onPressed:
+
+                      //  () {
+                      //   context.goNamed(RouteName.otp, pathParameters: {
+                      //     'otp': phoneController.text,
+                      //   });
+                      // },
+                      sendPhoneNumber,
                   text: 'NEXT',
                 ),
               ),
