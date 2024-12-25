@@ -6,7 +6,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:soul_chat/common/repositories/common_firebase_repository.dart';
 import 'package:soul_chat/common/utils/utils.dart';
+import 'package:soul_chat/models/user_model.dart';
 import 'package:soul_chat/routes/route_name.dart';
 
 // its immutable
@@ -23,6 +25,18 @@ class AuthRepository {
     required this.firebaseAuth,
     required this.firebaseFirestore,
   });
+
+  Future<UserModel> getCurrentUserData() async {
+    final userData = await firebaseFirestore
+        .collection('users')
+        .doc(firebaseAuth.currentUser?.uid)
+        .get();
+    UserModel? user;
+    if (userData.data() != null) {
+      user = UserModel.fromMap(userData.data()!);
+    }
+    return user!;
+  }
 
   Future<void> signInWithPhone(
       {required String phoneNumber, required BuildContext context}) async {
@@ -64,17 +78,35 @@ class AuthRepository {
     }
   }
 
-  void saveUserDataToFirebase(
+  Future<void> saveUserDataToFirebase(
       {required String name,
       required File? profilePic,
       required Ref ref,
-      required BuildContext context}) {
+      required BuildContext context}) async {
     try {
       String uid = firebaseAuth.currentUser!.uid;
       String photoUrl =
           'https://png.pngitem.com/pimgs/s/649-6490124_katie-notopoulos-katienotopoulos-i-write-about-tech-round.png';
 
-      if (profilePic != null) {}
+      if (profilePic != null) {
+        photoUrl = await ref
+            .read(commonFirebaseStorageRepositoryProvider)
+            .storeFileToFirebase('profilePic/$uid', profilePic);
+      }
+
+      final user = UserModel(
+        name: name,
+        uid: uid,
+        profilePic: photoUrl,
+        isOnline: true,
+        phoneNumber: firebaseAuth.currentUser!.uid,
+        groupId: [],
+      );
+// basically now we are creating firebase store collection where we are creating
+// user table where we are storing user details against unique uid
+      firebaseFirestore.collection('users').doc(uid).set(user.toMap());
+
+      context.goNamed(RouteName.mobileLayoutScreen);
     } catch (e) {
       showSnackBar(context: context, content: e.toString());
     }

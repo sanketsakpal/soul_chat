@@ -4,4 +4,5 @@ class RouteName {
   static const String landing = '/landing';
   static const String otp = '/otp';
   static const String userInformation = '/userInformation';
+  static const String mobileLayoutScreen = '/mobileLayoutScreen';
 }
