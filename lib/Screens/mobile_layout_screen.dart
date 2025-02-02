@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:soul_chat/Widgets/contact_list.dart';
 import 'package:soul_chat/colors.dart';
-
+import 'package:soul_chat/features/landing/screens/landing_screen.dart';
+import 'package:soul_chat/routes/route_name.dart';
 
 class MobileLayoutScreen extends StatelessWidget {
   const MobileLayoutScreen({super.key});
@@ -56,7 +58,9 @@ class MobileLayoutScreen extends StatelessWidget {
         ),
         body: const ContactsList(),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            context.pushNamed(RouteName.selectContactScreen);
+          },
           backgroundColor: tabColor,
           child: const Icon(
             Icons.comment,

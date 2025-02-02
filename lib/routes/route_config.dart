@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:soul_chat/Screens/mobile_chat_screen.dart';
 import 'package:soul_chat/Screens/mobile_layout_screen.dart';
 import 'package:soul_chat/common/widgets/error_screen.dart';
 import 'package:soul_chat/common/widgets/loader.dart';
@@ -10,6 +11,7 @@ import 'package:soul_chat/features/auth/screens/user_information_screen.dart';
 import 'package:soul_chat/features/auth/controller/auth_controller.dart';
 
 import 'package:soul_chat/features/landing/screens/landing_screen.dart';
+import 'package:soul_chat/features/select_contacts/screens/select_contacts_screen.dart';
 import 'package:soul_chat/routes/route_name.dart';
 
 // ChangeNotifier to sync Riverpod state with GoRouter
@@ -75,6 +77,16 @@ final routerProvider = Provider<GoRouter>((ref) {
         name: RouteName.mobileLayoutScreen,
         path: '/MobileLayoutScreen',
         builder: (context, state) => const MobileLayoutScreen(),
+      ),
+      GoRoute(
+        name: RouteName.selectContactScreen,
+        path: '/selectContactScreen',
+        builder: (context, state) => const SelectContactsScreen(),
+      ),
+      GoRoute(
+        name: RouteName.mobileChatScreen,
+        path: '/mobileChatScreen',
+        builder: (context, state) => const MobileChatScreen(),
       ),
     ],
   );
