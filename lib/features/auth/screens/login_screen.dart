@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:soul_chat/common/utils/utils.dart';
 import 'package:soul_chat/common/widgets/custom_button.dart';
-import 'package:soul_chat/features/controller/auth_controller.dart';
+import 'package:soul_chat/features/auth/controller/auth_controller.dart';
 import 'package:soul_chat/routes/route_name.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
@@ -86,14 +86,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               SizedBox(
                 width: 90,
                 child: CustomButton(
-                  onPressed:
-
-                      //  () {
-                      //   context.goNamed(RouteName.otp, pathParameters: {
-                      //     'otp': phoneController.text,
-                      //   });
-                      // },
-                      sendPhoneNumber,
+                  onPressed: sendPhoneNumber,
                   text: 'NEXT',
                 ),
               ),

@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:soul_chat/common/utils/utils.dart';
-import 'package:soul_chat/features/controller/auth_controller.dart';
+import 'package:soul_chat/features/auth/controller/auth_controller.dart';
 
 class UserInformationScreen extends ConsumerStatefulWidget {
   const UserInformationScreen({super.key});

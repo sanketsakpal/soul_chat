@@ -99,16 +99,20 @@ class AuthRepository {
         uid: uid,
         profilePic: photoUrl,
         isOnline: true,
-        phoneNumber: firebaseAuth.currentUser!.uid,
+        phoneNumber: firebaseAuth.currentUser!.phoneNumber!,
         groupId: [],
       );
 // basically now we are creating firebase store collection where we are creating
 // user table where we are storing user details against unique uid
       firebaseFirestore.collection('users').doc(uid).set(user.toMap());
 
-      context.goNamed(RouteName.mobileLayoutScreen);
+      if (context.mounted) {
+        context.goNamed(RouteName.mobileLayoutScreen);
+      }
     } catch (e) {
-      showSnackBar(context: context, content: e.toString());
+      if (context.mounted) {
+        showSnackBar(context: context, content: e.toString());
+      }
     }
   }
 }

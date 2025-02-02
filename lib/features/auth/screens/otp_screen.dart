@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:soul_chat/colors.dart';
-import 'package:soul_chat/features/controller/auth_controller.dart';
+import 'package:soul_chat/features/auth/controller/auth_controller.dart';
 
 class OtpScreen extends ConsumerWidget {
   final String? otp;
