@@ -4,7 +4,6 @@ import 'package:flutter_contacts/flutter_contacts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:soul_chat/common/utils/utils.dart';
-import 'package:soul_chat/features/landing/screens/landing_screen.dart';
 import 'package:soul_chat/models/user_model.dart';
 import 'package:soul_chat/routes/route_name.dart';
 
@@ -22,7 +21,7 @@ class SelectContactRepository {
     List<Contact> contacts = [];
     try {
       if (await FlutterContacts.requestPermission()) {
-        await FlutterContacts.getContacts(withProperties: true);
+        contacts = await FlutterContacts.getContacts(withProperties: true);
       }
     } catch (e) {
       debugPrint(e.toString());
@@ -42,7 +41,11 @@ class SelectContactRepository {
 
         if (selectedPhoneNumber == userData.phoneNumber) {
           isFound = true;
-          context.goNamed(RouteName.mobileChatScreen);
+          context.goNamed(RouteName.mobileChatScreen, queryParameters: {
+            'name': userData.name,
+            'uid': userData.uid,
+            'profilePic': userData.profilePic
+          });
         }
         if (!isFound) {
           showSnackBar(

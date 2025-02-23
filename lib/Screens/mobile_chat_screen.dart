@@ -3,9 +3,15 @@ import 'package:soul_chat/Widgets/chats_list.dart';
 import 'package:soul_chat/colors.dart';
 import 'package:soul_chat/info.dart';
 
-
 class MobileChatScreen extends StatelessWidget {
-  const MobileChatScreen({super.key});
+  final String name;
+  final String uid;
+  final String profilePic;
+  const MobileChatScreen(
+      {super.key,
+      required this.name,
+      required this.uid,
+      required this.profilePic});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +19,11 @@ class MobileChatScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: appBarColor,
         title: Text(
-          info[0]['name'].toString(),
+          name,
+          style: const TextStyle(
+            fontSize: 18,
+            color: Colors.white,
+          ),
         ),
         centerTitle: false,
         actions: [
@@ -36,34 +46,59 @@ class MobileChatScreen extends StatelessWidget {
           const Expanded(
             child: ChatList(),
           ),
-          TextField(
-            decoration: InputDecoration(
-              filled: true,
-              fillColor: mobileChatBoxColor,
-              prefixIcon: const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20.0),
-                child: Icon(Icons.emoji_emotions, color: Colors.grey,),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: TextField(
+              // scrollPadding: EdgeInsets.only(
+              //   bottom: MediaQuery.of(context).viewInsets.bottom + 36,
+              // ),
+              cursorColor: Colors.white,
+              showCursor: true,
+              style: const TextStyle(
+                color: Colors.white,
               ),
-              suffixIcon: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: const [
-                    Icon(Icons.camera_alt, color: Colors.grey,),
-                    Icon(Icons.attach_file, color: Colors.grey,),
-                    Icon(Icons.money, color: Colors.grey,),
-                  ],
+
+              decoration: InputDecoration(
+                filled: true,
+                fillColor: mobileChatBoxColor,
+                prefixIcon: const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20.0),
+                  child: Icon(
+                    Icons.emoji_emotions,
+                    color: Colors.grey,
+                  ),
                 ),
-              ),
-              hintText: 'Type a message!',
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(20.0),
-                borderSide: const BorderSide(
-                  width: 0,
-                  style: BorderStyle.none,
+                suffixIcon: const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Icon(
+                        Icons.camera_alt,
+                        color: Colors.grey,
+                      ),
+                      Icon(
+                        Icons.attach_file,
+                        color: Colors.grey,
+                      ),
+                      Icon(
+                        Icons.money,
+                        color: Colors.grey,
+                      ),
+                    ],
+                  ),
                 ),
+                hintText: 'Type a message!',
+                hintStyle: TextStyle(color: Colors.white),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(20.0),
+                  borderSide: const BorderSide(
+                    width: 0,
+                    style: BorderStyle.none,
+                  ),
+                ),
+                contentPadding: const EdgeInsets.all(10),
               ),
-              contentPadding: const EdgeInsets.all(10),
             ),
           ),
         ],

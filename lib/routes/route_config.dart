@@ -84,10 +84,15 @@ final routerProvider = Provider<GoRouter>((ref) {
         builder: (context, state) => const SelectContactsScreen(),
       ),
       GoRoute(
-        name: RouteName.mobileChatScreen,
-        path: '/mobileChatScreen',
-        builder: (context, state) => const MobileChatScreen(),
-      ),
+          name: RouteName.mobileChatScreen,
+          path: '/mobileChatScreen',
+          builder: (context, state) {
+            final name = state.uri.queryParameters['name'];
+            final uid = state.uri.queryParameters['uid'];
+            final profilePic = state.uri.queryParameters['profilePic'];
+            return MobileChatScreen(
+                name: name!, uid: uid!, profilePic: profilePic!);
+          }),
     ],
   );
 });

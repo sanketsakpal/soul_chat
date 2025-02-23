@@ -52,7 +52,13 @@ class SelectContactsScreen extends ConsumerWidget {
                               ),
                               radius: 30,
                             ),
-                      title: Text(contact.displayName),
+                      title: Text(
+                        contact.displayName,
+                        style: const TextStyle(
+                            fontSize: 18,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold),
+                      ),
                     ),
                   ),
                 );
