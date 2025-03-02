@@ -41,7 +41,7 @@ class SelectContactRepository {
 
         if (selectedPhoneNumber == userData.phoneNumber) {
           isFound = true;
-          context.goNamed(RouteName.mobileChatScreen, queryParameters: {
+          context.pushNamed(RouteName.mobileChatScreen, queryParameters: {
             'name': userData.name,
             'uid': userData.uid,
             'profilePic': userData.profilePic

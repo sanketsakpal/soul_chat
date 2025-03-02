@@ -28,7 +28,6 @@ class MyApp extends ConsumerWidget {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       title: 'Whatsapp UI',
-
       theme: ThemeData.dark().copyWith(
         appBarTheme: const AppBarTheme(
           color: appBarColor,

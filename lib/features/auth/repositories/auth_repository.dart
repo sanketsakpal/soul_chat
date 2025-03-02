@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -114,5 +115,11 @@ class AuthRepository {
         showSnackBar(context: context, content: e.toString());
       }
     }
+  }
+
+  Stream<UserModel> userData(String useId) {
+    return firebaseFirestore.collection('users').doc(useId).snapshots().map(
+          (event) => UserModel.fromMap(event.data()!),
+        );
   }
 }
