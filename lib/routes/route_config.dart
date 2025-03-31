@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:soul_chat/Screens/mobile_chat_screen.dart';
+import 'package:soul_chat/features/chat/screens/mobile_chat_screen.dart';
 import 'package:soul_chat/Screens/mobile_layout_screen.dart';
 import 'package:soul_chat/common/widgets/error_screen.dart';
 import 'package:soul_chat/common/widgets/loader.dart';

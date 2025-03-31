@@ -1,12 +1,49 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:soul_chat/Widgets/contact_list.dart';
+import 'package:soul_chat/features/auth/controller/auth_controller.dart';
+import 'package:soul_chat/features/auth/repositories/auth_repository.dart';
+import 'package:soul_chat/features/chat/widgets/contact_list.dart';
 import 'package:soul_chat/colors.dart';
-import 'package:soul_chat/features/landing/screens/landing_screen.dart';
 import 'package:soul_chat/routes/route_name.dart';
 
-class MobileLayoutScreen extends StatelessWidget {
+class MobileLayoutScreen extends ConsumerStatefulWidget {
   const MobileLayoutScreen({super.key});
+
+  @override
+  ConsumerState<MobileLayoutScreen> createState() => _MobileLayoutScreenState();
+}
+
+class _MobileLayoutScreenState extends ConsumerState<MobileLayoutScreen>
+    with WidgetsBindingObserver {
+  @override
+  @override
+  void initState() {
+    WidgetsBinding.instance.addObserver(this);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    WidgetsBinding.instance.removeObserver(this);
+  }
+
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+
+    switch (state) {
+      case AppLifecycleState.resumed:
+        ref.read(authControllerProvider).setUserState(true);
+        break;
+      case AppLifecycleState.inactive:
+      case AppLifecycleState.paused:
+      case AppLifecycleState.detached:
+        ref.read(authControllerProvider).setUserState(true);
+        break;
+      default:
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:soul_chat/Widgets/chats_list.dart';
-import 'package:soul_chat/Widgets/contact_list.dart';
+import 'package:soul_chat/features/chat/widgets/chats_list.dart';
+import 'package:soul_chat/features/chat/widgets/contact_list.dart';
 import 'package:soul_chat/Widgets/web_chat_app_bar.dart';
 import 'package:soul_chat/Widgets/web_profile_bar.dart';
 import 'package:soul_chat/Widgets/web_search_bar.dart';
@@ -44,7 +44,9 @@ class WebLayoutScreen extends StatelessWidget {
                 const ChatAppBar(),
                 const SizedBox(height: 20),
                 const Expanded(
-                  child: ChatList(),
+                  child: ChatList(
+                    reciverUserId: '',
+                  ),
                 ),
                 Container(
                   height: MediaQuery.of(context).size.height * 0.07,
