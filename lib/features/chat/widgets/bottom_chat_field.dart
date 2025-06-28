@@ -7,6 +7,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:soul_chat/colors.dart';
 import 'package:soul_chat/common/enums/message_enum.dart';
+import 'package:soul_chat/common/utils/utils.dart';
 import 'package:soul_chat/features/chat/controller/chat_controller.dart';
 
 class BottomChatField extends ConsumerStatefulWidget {
@@ -79,44 +80,44 @@ class _BottomChatFieldState extends ConsumerState<BottomChatField> {
     }
   }
 
-  // void sendFileMessage(
-  //   File file,
-  //   MessageEnum messageEnum,
-  // ) {
-  //   ref.read(chatControllerProvider).sendFileMessage(
-  //         context,
-  //         file,
-  //         widget.recieverUserId,
-  //         messageEnum,
-  //         widget.isGroupChat,
-  //       );
-  // }
+  void sendFileMessage(
+    File file,
+    MessageEnum messageEnum,
+  ) {
+    ref.read(chatControllerProvider).sendFileMessage(
+          context,
+          file,
+          widget.recieverUserId,
+          messageEnum,
+          widget.isGroupChat,
+        );
+  }
 
-  // void selectImage() async {
-  //   File? image = await pickImageFromGallery(context);
-  //   if (image != null) {
-  //     sendFileMessage(image, MessageEnum.image);
-  //   }
-  // }
+  void selectImage() async {
+    File? image = await pickImageFromGallery(context);
+    if (image != null) {
+      sendFileMessage(image, MessageEnum.image);
+    }
+  }
 
-  // void selectVideo() async {
-  //   File? video = await pickVideoFromGallery(context);
-  //   if (video != null) {
-  //     sendFileMessage(video, MessageEnum.video);
-  //   }
-  // }
+  void selectVideo() async {
+    File? video = await pickVideoFromGallery(context);
+    if (video != null) {
+      sendFileMessage(video, MessageEnum.video);
+    }
+  }
 
-  // void selectGIF() async {
-  //   final gif = await pickGIF(context);
-  //   if (gif != null) {
-  //     ref.read(chatControllerProvider).sendGIFMessage(
-  //           context,
-  //           gif.url,
-  //           widget.recieverUserId,
-  //           widget.isGroupChat,
-  //         );
-  //   }
-  // }
+  void selectGIF() async {
+    // final gif = await pickGIF(context);
+    // if (gif != null) {
+    //   ref.read(chatControllerProvider).sendGIFMessage(
+    //         context,
+    //         gif.url,
+    //         widget.recieverUserId,
+    //         widget.isGroupChat,
+    //       );
+    // }
+  }
 
   void hideEmojiContainer() {
     setState(() {
@@ -191,13 +192,13 @@ class _BottomChatFieldState extends ConsumerState<BottomChatField> {
                               color: Colors.grey,
                             ),
                           ),
-                          // IconButton(
-                          //   onPressed: selectGIF,
-                          //   icon: const Icon(
-                          //     Icons.gif,
-                          //     color: Colors.grey,
-                          //   ),
-                          // ),
+                          IconButton(
+                            onPressed: selectGIF,
+                            icon: const Icon(
+                              Icons.gif,
+                              color: Colors.grey,
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -208,14 +209,14 @@ class _BottomChatFieldState extends ConsumerState<BottomChatField> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         IconButton(
-                          onPressed: () {},
+                          onPressed: selectImage,
                           icon: const Icon(
                             Icons.camera_alt,
                             color: Colors.grey,
                           ),
                         ),
                         IconButton(
-                          onPressed: () {},
+                          onPressed: selectVideo,
                           icon: const Icon(
                             Icons.attach_file,
                             color: Colors.grey,

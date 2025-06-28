@@ -48,14 +48,19 @@ class AuthRepository {
           await firebaseAuth.signInWithCredential(credential);
         },
         verificationFailed: (error) {
+          print('-----------$error');
           throw Exception(error.message);
         },
         codeSent: (verificationId, forceResendingToken) async {
+          await context.pushNamed(RouteName.otp, pathParameters: {
+            'otp': verificationId,
+          });
+        },
+        codeAutoRetrievalTimeout: (verificationId) {
           context.pushNamed(RouteName.otp, pathParameters: {
             'otp': verificationId,
           });
         },
-        codeAutoRetrievalTimeout: (verificationId) {},
       );
     } catch (e) {
       showSnackBar(context: context, content: e.toString());

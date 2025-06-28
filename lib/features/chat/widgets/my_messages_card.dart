@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:soul_chat/colors.dart';
-
+import 'package:soul_chat/common/enums/message_enum.dart';
+import 'package:soul_chat/features/chat/widgets/display_image_or_text.dart';
 
 class MyMessageCard extends StatelessWidget {
   final String message;
   final String date;
+  final MessageEnum type;
 
-  const MyMessageCard({super.key, required this.message, required this.date});
+  const MyMessageCard(
+      {super.key,
+      required this.message,
+      required this.date,
+      required this.type});
 
   @override
   Widget build(BuildContext context) {
@@ -30,12 +36,7 @@ class MyMessageCard extends StatelessWidget {
                   top: 5,
                   bottom: 20,
                 ),
-                child: Text(
-                  message,
-                  style: const TextStyle(
-                    fontSize: 16,
-                  ),
-                ),
+                child: DisplayImageOrText(message: message, type: type),
               ),
               Positioned(
                 bottom: 4,
@@ -44,7 +45,7 @@ class MyMessageCard extends StatelessWidget {
                   children: [
                     Text(
                       date,
-                      style:const TextStyle(
+                      style: const TextStyle(
                         fontSize: 13,
                         color: Colors.white60,
                       ),

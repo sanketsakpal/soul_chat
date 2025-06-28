@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
-import 'package:soul_chat/Widgets/my_messages_card.dart';
-import 'package:soul_chat/Widgets/sender_messages_card.dart';
+import 'package:soul_chat/features/chat/widgets/my_messages_card.dart';
+import 'package:soul_chat/features/chat/widgets/sender_messages_card.dart';
 import 'package:soul_chat/common/widgets/loader.dart';
 import 'package:soul_chat/features/chat/controller/chat_controller.dart';
 import 'package:soul_chat/models/message.dart';
@@ -49,10 +49,17 @@ class _ChatListState extends ConsumerState<ChatList> {
               var timeSent = DateFormat.Hm().format(messageData.timeSent);
               if (messageData.senderId ==
                   FirebaseAuth.instance.currentUser!.uid) {
-                return MyMessageCard(message: messageData.text, date: timeSent);
+                return MyMessageCard(
+                  message: messageData.text,
+                  date: timeSent,
+                  type: messageData.type,
+                );
               }
               return SenderMessageCard(
-                  message: messageData.text, date: timeSent);
+                message: messageData.text,
+                date: timeSent,
+                type: messageData.type,
+              );
             },
           );
         });

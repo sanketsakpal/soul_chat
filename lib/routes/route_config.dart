@@ -78,11 +78,11 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: '/MobileLayoutScreen',
         builder: (context, state) => const MobileLayoutScreen(),
       ),
-      GoRoute(
-        name: RouteName.selectContactScreen,
-        path: '/selectContactScreen',
-        builder: (context, state) => const SelectContactsScreen(),
-      ),
+      // GoRoute(
+      //   name: RouteName.selectContactScreen,
+      //   path: '/selectContactScreen',
+      //   // builder: (context, state) => const SelectContactsScreen(),
+      // ),
       GoRoute(
           name: RouteName.mobileChatScreen,
           path: '/mobileChatScreen',
