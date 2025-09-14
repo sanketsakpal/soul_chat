@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class RouteName {
   static const String splash = '/';
   static const String login = '/login';
@@ -7,4 +9,9 @@ class RouteName {
   static const String mobileLayoutScreen = '/mobileLayoutScreen';
   static const String selectContactScreen = '/selectContactScreen';
   static const String mobileChatScreen = '/mobileChatScreen';
+
+
+
+
 }
+
