@@ -38,8 +38,38 @@ class AuthRepository {
     return user!;
   }
 
-  Future<void> signInWithPhone(
-      {required String phoneNumber, required BuildContext context}) async {
+  // Future<void> signInWithPhone(
+  //     {required String phoneNumber, required BuildContext context}) async {
+  //   try {
+  //     await firebaseAuth.verifyPhoneNumber(
+  //       phoneNumber: phoneNumber,
+  //       verificationCompleted: (PhoneAuthCredential credential) async {
+  //         await firebaseAuth.signInWithCredential(credential);
+  //       },
+  //       verificationFailed: (error) {
+  //         print('-----------$error');
+  //         throw Exception(error.message);
+  //       },
+  //       codeSent: (verificationId, forceResendingToken) async {
+  //         await context.pushNamed(RouteName.otp, pathParameters: {
+  //           'otp': verificationId,
+  //         });
+  //       },
+  //       codeAutoRetrievalTimeout: (verificationId) {
+  //         context.pushNamed(RouteName.otp, pathParameters: {
+  //           'otp': verificationId,
+  //         });
+  //       },
+  //     );
+  //   } catch (e) {
+  //     showSnackBar(context: context, content: e.toString());
+  //   }
+  // }
+  String? lastVerificationId;
+  Future<void> signInWithPhone({
+    required String phoneNumber,
+    required BuildContext context,
+  }) async {
     try {
       await firebaseAuth.verifyPhoneNumber(
         phoneNumber: phoneNumber,
@@ -51,17 +81,23 @@ class AuthRepository {
           throw Exception(error.message);
         },
         codeSent: (verificationId, forceResendingToken) async {
-          await context.pushNamed(RouteName.otp, pathParameters: {
-            'otp': verificationId,
-          });
+          if (!context.mounted) return;
+          lastVerificationId = verificationId; // ✅ store it
+          await context.pushNamed(
+            RouteName.otp,
+            pathParameters: {'verificationId': verificationId},
+          );
         },
         codeAutoRetrievalTimeout: (verificationId) {
-          context.pushNamed(RouteName.otp, pathParameters: {
-            'otp': verificationId,
-          });
+          if (!context.mounted) return; // ✅ Check if still valid
+          context.pushNamed(
+            RouteName.otp,
+            pathParameters: {'otp': verificationId},
+          );
         },
       );
     } catch (e) {
+      if (!context.mounted) return; // ✅ Prevent crash
       showSnackBar(context: context, content: e.toString());
     }
   }

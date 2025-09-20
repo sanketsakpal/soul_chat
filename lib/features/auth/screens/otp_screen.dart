@@ -4,13 +4,13 @@ import 'package:soul_chat/colors.dart';
 import 'package:soul_chat/features/auth/controller/auth_controller.dart';
 
 class OtpScreen extends ConsumerWidget {
-  final String? otp;
-  const OtpScreen({super.key, required this.otp});
+  final String? verificationId;
+  const OtpScreen({super.key, required this.verificationId});
 
   void verifyOTP(WidgetRef ref, BuildContext context, String userOTP) {
     ref.read(authControllerProvider).verifyOTP(
           context,
-          otp!,
+          verificationId!,
           userOTP,
         );
   }

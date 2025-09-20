@@ -40,6 +40,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       ref
           .read(authControllerProvider)
           .singInWithPhone(context, '+${country!.phoneCode}$phoneNumber');
+      print("here");
+      
     } else {
       showSnackBar(context: context, content: 'Fill out all the fields');
     }
@@ -84,7 +86,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               SizedBox(
                 width: 90,
                 child: CustomButton(
-                  onPressed: sendPhoneNumber,
+                  onPressed: () => sendPhoneNumber(),
                   text: 'NEXT',
                 ),
               ),

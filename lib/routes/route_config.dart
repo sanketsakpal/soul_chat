@@ -62,10 +62,10 @@ final routerProvider = Provider<GoRouter>((ref) {
       ),
       GoRoute(
         name: RouteName.otp,
-        path: '/otp/:otp',
+        path: '/otp/:verificationId',
         builder: (context, state) {
-          final otp = state.pathParameters['otp'];
-          return OtpScreen(otp: otp);
+          final verificationId = state.pathParameters['verificationId']!;
+          return OtpScreen(verificationId: verificationId);
         },
       ),
       GoRoute(
